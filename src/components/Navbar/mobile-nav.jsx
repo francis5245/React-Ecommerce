@@ -1,5 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import NavLink from "./nav-link"
+import { Link, useLocation } from "react-router-dom"
 
 const NAV_ITEMS = [
   { label: "Accueil", href: "/" },
@@ -18,53 +18,118 @@ const NAV_ITEMS = [
   { label: "Contact",     href: "/contact" },
 ]
 
+function MobileNavLink({ href, children, onClick }) {
+  const { pathname } = useLocation()
+  const isActive = pathname === href
+
+  return (
+    <Link
+      to={href}
+      onClick={onClick}
+      style={{
+        display: "block",
+        padding: "12px 20px",
+        fontSize: "14px",
+        fontWeight: isActive ? "700" : "500",
+        color: isActive ? "#e53935" : "rgba(255,255,255,0.85)",
+        borderLeft: isActive ? "3px solid #e53935" : "3px solid transparent",
+        textDecoration: "none",
+        transition: "all 0.2s",
+        letterSpacing: "0.02em",
+      }}
+    >
+      {children}
+    </Link>
+  )
+}
+
 export default function MobileNav({ onClose }) {
   return (
-    <div className="flex flex-col h-full bg-[#1a1a2e]">
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      height: "100%",
+      background: "#1a1a2e",
+    }}>
 
-      {/* Logo en haut du tiroir */}
-      <div className="px-4 py-5 border-b border-white/10">
-        <a href="/" className="text-2xl font-black text-white tracking-wide">
-          SHOOP<span className="text-[#e53935]">.</span>
+      {/* Logo */}
+      <div style={{
+        padding: "20px",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
+      }}>
+        <a href="/" style={{
+          fontSize: "24px",
+          fontWeight: "900",
+          color: "white",
+          textDecoration: "none",
+          letterSpacing: "0.04em",
+        }}>
+          SHOOP<span style={{ color: "#e53935" }}>.</span>
         </a>
       </div>
 
-      {/* Liste des liens */}
-      <nav className="flex-1 overflow-y-auto px-2 py-4">
+      {/* Liens */}
+      <nav style={{ flex: 1, overflowY: "auto", paddingTop: "8px" }}>
         {NAV_ITEMS.map((item) =>
           item.children ? (
             <Accordion key={item.label} type="single" collapsible>
-              <AccordionItem value={item.label} className="border-none">
-                <AccordionTrigger className="px-3 py-2 text-sm rounded-md
-                                             hover:bg-white/10 hover:no-underline
-                                             text-white/80">
+              <AccordionItem value={item.label} style={{ border: "none" }}>
+                <AccordionTrigger style={{
+                  padding: "12px 20px",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                  color: "rgba(255,255,255,0.85)",
+                  borderLeft: "3px solid transparent",
+                  textDecoration: "none",
+                }}>
                   {item.label}
                 </AccordionTrigger>
-                <AccordionContent className="pb-0">
-                  <div className="flex flex-col pl-3 border-l border-white/20 ml-3 gap-1">
+                <AccordionContent style={{ paddingBottom: 0 }}>
+                  <div style={{
+                    borderLeft: "2px solid rgba(229,57,53,0.4)",
+                    marginLeft: "20px",
+                  }}>
                     {item.children.map((child) => (
-                      <NavLink key={child.label} href={child.href} onClick={onClose}>
+                      <MobileNavLink
+                        key={child.label}
+                        href={child.href}
+                        onClick={onClose}
+                      >
                         {child.label}
-                      </NavLink>
+                      </MobileNavLink>
                     ))}
                   </div>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
           ) : (
-            <NavLink key={item.label} href={item.href} onClick={onClose}>
+            <MobileNavLink key={item.label} href={item.href} onClick={onClose}>
               {item.label}
-            </NavLink>
+            </MobileNavLink>
           )
         )}
       </nav>
 
-      {/* Pied du tiroir */}
-      <div className="border-t border-white/10 px-4 py-4 flex flex-col gap-2">
-        <a href="/compte" className="text-sm text-white/60 hover:text-white transition-colors">
+      {/* Pied */}
+      <div style={{
+        borderTop: "1px solid rgba(255,255,255,0.08)",
+        padding: "16px 20px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "12px",
+      }}>
+        <a href="/compte" style={{
+          fontSize: "13px",
+          color: "rgba(255,255,255,0.5)",
+          textDecoration: "none",
+        }}>
           Mon compte
         </a>
-        <a href="/commandes" className="text-sm text-white/60 hover:text-white transition-colors">
+        <a href="/commandes" style={{
+          fontSize: "13px",
+          color: "rgba(255,255,255,0.5)",
+          textDecoration: "none",
+        }}>
           Mes commandes
         </a>
       </div>

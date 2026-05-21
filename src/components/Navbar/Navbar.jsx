@@ -110,7 +110,7 @@ export default function Navbar() {
                   <span>Menu</span>
                 </button>
               </SheetTrigger>
-              <SheetContent side="left" className="w-72 p-0">
+              <SheetContent side="left" className="w-[280px] p-0">
                 <SheetTitle className="sr-only">Menu</SheetTitle>
                 <MobileNav onClose={() => setIsOpen(false)} />
               </SheetContent>
