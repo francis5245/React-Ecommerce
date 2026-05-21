@@ -1,0 +1,370 @@
+/* ================================
+   VARIABLES
+   ================================ */
+.navbar-wrapper {
+  --brand: #e53935;
+  --brand-dark: #c62828;
+  --brand-foreground: #ffffff;
+  --dark-bg: #1a1a2e;
+  --dark-fg: rgba(255, 255, 255, 0.80);
+
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ================================
+   CONTENEUR CENTRÉ
+   ================================ */
+.navbar-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* ================================
+   COUCHE 1 — barre du haut
+   ================================ */
+.navbar-top {
+  background-color: var(--dark-bg);
+  height: 38px;
+  font-size: 12px;
+  color: var(--dark-fg);
+}
+
+.navbar-top__left,
+.navbar-top__right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-top__left span,
+.navbar-top__right span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.navbar-top__right a {
+  color: var(--dark-fg);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.navbar-top__right a:hover {
+  color: white;
+}
+
+/* ================================
+   COUCHE 2 — logo + recherche
+   ================================ */
+.navbar-middle {
+  background-color: var(--dark-bg);
+  height: 88px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Logo */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: white;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.navbar-logo span {
+  color: var(--brand);
+}
+
+.navbar-logo svg {
+  display: none;
+}
+
+/* Barre de recherche */
+.navbar-search {
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  overflow: hidden;
+  flex: 1;
+  max-width: 580px;
+  margin: 0 40px;
+  height: 48px;
+  background: white;
+}
+
+.navbar-search__select {
+  padding: 0 14px;
+  height: 100%;
+  border: none;
+  border-right: 1px solid #e0e0e0;
+  background: #f5f5f5;
+  font-size: 13px;
+  color: #333;
+  cursor: pointer;
+  outline: none;
+  min-width: 140px;
+}
+
+.navbar-search__input {
+  flex: 1;
+  height: 100%;
+  border: none;
+  padding: 0 14px;
+  font-size: 14px;
+  outline: none;
+  color: #333;
+  background: white;
+}
+
+.navbar-search__input::placeholder {
+  color: #aaa;
+}
+
+.navbar-search__btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px;
+  height: 100%;
+  background-color: var(--brand);
+  color: white;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  flex-shrink: 0;
+  letter-spacing: 0.03em;
+}
+
+.navbar-search__btn:hover {
+  background-color: var(--brand-dark);
+}
+
+/* Actions wishlist + panier */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-shrink: 0;
+}
+
+.navbar-actions__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: white;
+  text-decoration: none;
+  font-size: 11px;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.navbar-actions__item:hover {
+  color: var(--brand);
+}
+
+/* Badge sur les icônes */
+.navbar-actions__badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: var(--brand);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================================
+   COUCHE 3 — navigation liens
+   ================================ */
+.navbar-bottom {
+  background-color: white;
+  height: 50px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.navbar-bottom__desktop {
+  display: flex;
+  height: 100%;
+}
+
+.navbar-bottom__mobile {
+  display: none;
+}
+
+/* Logo caché sur desktop dans navbar-bottom */
+.navbar-bottom .navbar-logo {
+  display: none;
+}
+
+/* Hamburger */
+.navbar-hamburger {
+  background: transparent;
+  border: none;
+  color: var(--dark-bg);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.navbar-hamburger:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+/* ================================
+   RESPONSIVE — mobile (≤ 768px)
+   ================================ */
+@media (max-width: 768px) {
+
+  /* Cache la barre top et middle */
+  .navbar-top {
+    display: none;
+  }
+
+  .navbar-middle {
+    display: none;
+  }
+
+  /* La barre bottom devient la navbar mobile complète */
+  .navbar-bottom {
+    background-color: var(--dark-bg);
+    height: auto;
+    border-bottom: none;
+  }
+
+  .navbar-bottom .navbar-container {
+    flex-direction: column;
+    padding: 0;
+    height: auto;
+  }
+
+  /* Ligne 1 : logo centré */
+  .navbar-bottom .navbar-logo {
+    display: flex;
+    color: white;
+    padding: 14px 0 10px;
+    font-size: 26px;
+  }
+
+  .navbar-bottom .navbar-logo span {
+    color: var(--brand);
+  }
+
+  /* Ligne 2 : barre de recherche */
+  .navbar-bottom .navbar-search-mobile {
+  display: none;
+  width: 100%;
+  padding: 0 16px 12px;
+}
+
+.navbar-bottom .navbar-search-mobile input {
+  flex: 1;
+  min-width: 0;        /* ← empêche le input de disparaître */
+  height: 42px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  padding: 0 14px;
+  font-size: 13px;
+  outline: none;
+  color: #333;
+  background: white;
+}
+
+.navbar-bottom .navbar-search-mobile button {
+  height: 42px;
+  padding: 0 18px;
+  background: var(--brand);
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;  /* ← empêche le texte de sauter */
+}
+
+@media (max-width: 768px) {
+  .navbar-bottom .navbar-search-mobile {
+    display: flex;      /* ← visible uniquement sur mobile */
+  }
+}
+
+  .navbar-bottom .navbar-search-mobile input {
+    flex: 1;
+    height: 40px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    padding: 0 14px;
+    font-size: 13px;
+    outline: none;
+  }
+
+  .navbar-bottom .navbar-search-mobile button {
+    height: 40px;
+    padding: 0 16px;
+    background: var(--brand);
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  /* Ligne 3 : wishlist + panier + menu */
+  .navbar-bottom__mobile {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 8px 0;
+  }
+
+  /* Cache le nav desktop */
+  .navbar-bottom__desktop {
+    display: none;
+  }
+
+  /* Items mobile (wishlist, panier, menu) */
+  .navbar-mobile__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    color: white;
+    text-decoration: none;
+    font-size: 11px;
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .navbar-mobile__item:hover {
+    color: var(--brand);
+  }
+}

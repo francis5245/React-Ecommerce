@@ -1,21 +1,8 @@
-import { X } from "lucide-react"
-
-// Composant shadcn — installé via : npx shadcn@latest add accordion
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-
-// Notre lien réutilisable — déjà codé
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import NavLink from "./nav-link"
 
-// On réutilise la même structure de données que desktop-nav
-// Astuce pro : idéalement ce tableau serait dans un fichier séparé
-// src/config/nav.js — mais on garde ça simple pour l'instant
 const NAV_ITEMS = [
-  { label: "Accueil",     href: "/" },
+  { label: "Accueil", href: "/" },
   {
     label: "Catégories",
     href: "#",
@@ -31,79 +18,53 @@ const NAV_ITEMS = [
   { label: "Contact",     href: "/contact" },
 ]
 
-// onClose est passé depuis Navbar.jsx pour fermer le Sheet
-// quand l'utilisateur clique sur un lien
 export default function MobileNav({ onClose }) {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full bg-[#1a1a2e]">
 
-      {/* En-tête du tiroir avec bouton de fermeture */}
-      <div className="flex items-center justify-between px-4 py-4 border-b">
-        <span className="text-lg font-bold">MonShop</span>
-        <button
-          onClick={onClose}
-          aria-label="Fermer le menu"
-          className="rounded-md p-1 hover:bg-accent transition-colors"
-        >
-          <X className="h-5 w-5" />
-        </button>
+      {/* Logo en haut du tiroir */}
+      <div className="px-4 py-5 border-b border-white/10">
+        <a href="/" className="text-2xl font-black text-white tracking-wide">
+          SHOOP<span className="text-[#e53935]">.</span>
+        </a>
       </div>
 
-      {/* Liste des liens — prend tout l'espace disponible */}
+      {/* Liste des liens */}
       <nav className="flex-1 overflow-y-auto px-2 py-4">
         {NAV_ITEMS.map((item) =>
-
-          // Si l'item a des enfants → Accordion dépliable
           item.children ? (
             <Accordion key={item.label} type="single" collapsible>
               <AccordionItem value={item.label} className="border-none">
-
-                {/* Le titre cliquable qui déplie/replie */}
                 <AccordionTrigger className="px-3 py-2 text-sm rounded-md
-                                             hover:bg-accent hover:no-underline
-                                             text-muted-foreground">
+                                             hover:bg-white/10 hover:no-underline
+                                             text-white/80">
                   {item.label}
                 </AccordionTrigger>
-
-                {/* Les sous-liens qui apparaissent quand on déplie */}
                 <AccordionContent className="pb-0">
-                  <div className="flex flex-col pl-3 border-l ml-3 gap-1">
+                  <div className="flex flex-col pl-3 border-l border-white/20 ml-3 gap-1">
                     {item.children.map((child) => (
-                      <NavLink
-                        key={child.label}
-                        href={child.href}
-                        onClick={onClose}  /* ferme le menu au clic */
-                      >
+                      <NavLink key={child.label} href={child.href} onClick={onClose}>
                         {child.label}
                       </NavLink>
                     ))}
                   </div>
                 </AccordionContent>
-
               </AccordionItem>
             </Accordion>
-
           ) : (
-            // Lien simple → NavLink avec fermeture du menu au clic
-            <NavLink
-              key={item.label}
-              href={item.href}
-              onClick={onClose}
-            >
+            <NavLink key={item.label} href={item.href} onClick={onClose}>
               {item.label}
             </NavLink>
           )
         )}
       </nav>
 
-      {/* Pied du tiroir — liens secondaires */}
-      <div className="border-t px-4 py-4 flex flex-col gap-2">
-        <a href="/compte"
-           className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+      {/* Pied du tiroir */}
+      <div className="border-t border-white/10 px-4 py-4 flex flex-col gap-2">
+        <a href="/compte" className="text-sm text-white/60 hover:text-white transition-colors">
           Mon compte
         </a>
-        <a href="/commandes"
-           className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+        <a href="/commandes" className="text-sm text-white/60 hover:text-white transition-colors">
           Mes commandes
         </a>
       </div>

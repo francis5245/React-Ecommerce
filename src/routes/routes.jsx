@@ -1,19 +1,26 @@
 // src/routes/routes.jsx
-
-// 1. On prend le moteur de React Router
 import { createBrowserRouter } from "react-router-dom";
-
-// 2. On utilise des chemins sécurisés avec l'alias @/
 import MainLayout from "@/layouts/MainLayout"; 
-import Home       from "@/pages/Home";
+import Home from "@/pages/Home";
+import Promotions from "@/pages/Promotion";
+import ErrorPage from "@/pages/ErrorPage";
 
-// 3. On crée le routeur attendu par App.jsx (Note le export const router)
+// On garde ton tableau d'objets bien propre
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Home /> }
+      {
+        path: "", // Correspond à la page d'accueil "/"
+        element: <Home />,
+      },
+      {
+        path: "promotions",
+        element: <Promotions />,
+      },
+      // { path: "promotions", element: <Promotions /> }
     ]
   }
 ]);
