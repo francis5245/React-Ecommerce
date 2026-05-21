@@ -115,21 +115,21 @@ export default function NotFound404() {
               animation: visible ? "fadeInLeft 0.55s ease forwards" : "none",
               animationDelay:"0.32s",
             }}>
-              This is not the page you<br />are looking for
+              Ce n'est pas la page que<br />vous recherchez
             </p>
-
+ 
             <div style={{
               opacity: visible ? 1 : 0,
               animation: visible ? "slideUp 0.5s ease forwards" : "none",
               animationDelay:"0.5s",
             }}>
               <p style={{ fontSize:13, color:"#999", marginBottom:10 }}>
-                Here are some helpful links instead:
+                Voici plutôt quelques liens utiles:
               </p>
               <div style={{ display:"flex", gap:24 }}>
-                <a href="/" className="link-404">Home</a>
-                <a href="/download" className="link-404">Download free</a>
-                <a href="/tour" className="link-404">Tour</a>
+                <a href="/" className="link-404">Accueil</a>
+                <a href="/login" className="link-404">Connexion</a>
+                {/* <a href="/tour" className="link-404">Tour</a> */}
               </div>
             </div>
           </div>
