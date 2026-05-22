@@ -203,4 +203,15 @@
     align-items: flex-start;
     gap: 12px;
   }
+
+  .new-products__tabs [role="tablist"] {
+    flex-wrap: wrap;    
+    height: auto;
+    gap: 4px;
+  }
+
+  .new-products__tabs [role="tab"] {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
 }
