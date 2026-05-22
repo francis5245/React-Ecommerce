@@ -203,7 +203,9 @@
     align-items: flex-start;
     gap: 12px;
   }
-
+   .new-products {
+    padding: 32px 12px;
+  }
   .new-products__tabs [role="tablist"] {
     flex-wrap: wrap;    
     height: auto;
@@ -213,5 +215,20 @@
   .new-products__tabs [role="tab"] {
     font-size: 12px;
     padding: 5px 10px;
+  }
+  .product-card__image-wrap {
+    height: 140px;   
+  }
+
+  .product-card__image-wrap img {
+    max-height: 120px;
+  }
+
+  .product-card__name {
+    font-size: 11px;  
+  }
+
+  .product-card__price {
+    font-size: 13px;
   }
 }
