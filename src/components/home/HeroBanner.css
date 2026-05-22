@@ -16,8 +16,9 @@
   background: #f0f0f0;
   position: relative;
   overflow: hidden;
+  width: 100%;         
+  box-sizing: border-box; 
 }
-
 /* Triangle rouge décoratif */
 .hero__slide::before {
   content: "";
@@ -125,16 +126,23 @@
    RESPONSIVE
    ================================ */
 @media (max-width: 768px) {
+  .hero {
+    width: 100%;
+    overflow: hidden;
+  }
+
   .hero__slide {
     grid-template-columns: 1fr;
-    min-height: 260px;
+    min-height: 280px;
     padding: 30px 24px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .hero__slide::before {
     width: 100%;
-    height: 60%;
-    clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+    height: 100%;
+    clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%);
   }
 
   .hero__image {
@@ -142,6 +150,10 @@
   }
 
   .hero__title {
-    font-size: 24px;
+    font-size: 26px;
+  }
+
+  .hero__dots {
+    width: 100%;
   }
 }
