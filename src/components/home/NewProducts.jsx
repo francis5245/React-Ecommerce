@@ -1,4 +1,5 @@
 import { Heart, ArrowLeftRight, Eye, Star } from "lucide-react"
+import { useEffect, useState } from "react"
 import {
   Carousel,
   CarouselContent,
@@ -97,12 +98,29 @@ function ProductCard({ product }) {
 
 // Carousel de produits
 function ProductCarousel({ products }) {
+  const [api, setApi] = useState(null)
+
+  // Défilement automatique toutes les 3 secondes sur mobile
+  useEffect(() => {
+    if (!api) return
+    const timer = setInterval(() => {
+      api.scrollNext()
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [api])
+
   return (
-    <div className="relative px-8">
-      <Carousel opts={{ align: "start", loop: true }}>
+    <div className="new-products__carousel relative px-8">
+      <Carousel
+        setApi={setApi}
+        opts={{ align: "start", loop: true }}
+      >
         <CarouselContent className="-ml-4">
           {products.map((product) => (
-            <CarouselItem key={product.id} className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+            <CarouselItem
+              key={product.id}
+              className="pl-4 basis-full md:basis-1/3 lg:basis-1/4"
+            >
               <ProductCard product={product} />
             </CarouselItem>
           ))}
