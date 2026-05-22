@@ -1,0 +1,125 @@
+/* ================================
+   FOOTER
+   ================================ */
+.footer {
+  background: #1a1a2e;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ================================
+   SECTION PRINCIPALE — 4 colonnes
+   ================================ */
+.footer__main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.footer__col-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+/* Colonne About */
+.footer__about-text {
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: rgba(255,255,255,0.6);
+}
+
+.footer__contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 10px;
+}
+
+.footer__contact-item svg {
+  color: #e53935;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+/* Colonnes liens */
+.footer__links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer__links a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer__links a:hover {
+  color: #e53935;
+}
+
+/* ================================
+   BARRE DU BAS — copyright + paiements
+   ================================ */
+.footer__bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.footer__payments {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer__payment-badge {
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.7);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+@media (max-width: 768px) {
+  .footer__main {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding: 36px 20px;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    text-align: center;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer__main {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,165 @@
+/* ================================
+   TOP SELLING
+   ================================ */
+.top-selling {
+  padding: 48px 20px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* En-tête : titre + tabs */
+.top-selling__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 16px;
+}
+
+.top-selling__title {
+  font-size: 22px;
+  font-weight: 900;
+  color: #1a1a2e;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Tabs — même style que NewProducts */
+.top-selling__tabs [role="tablist"] {
+  background: transparent;
+  gap: 4px;
+}
+
+.top-selling__tabs [role="tab"] {
+  font-size: 13px;
+  font-weight: 600;
+  color: #888;
+  padding: 6px 14px;
+  border-radius: 2px;
+  transition: color 0.2s;
+  background: transparent;
+}
+
+.top-selling__tabs [role="tab"]:hover {
+  color: #e53935;
+}
+
+.top-selling__tabs [role="tab"][data-state="active"] {
+  color: #e53935;
+  background: transparent;
+  box-shadow: none;
+  border-bottom: 2px solid #e53935;
+  border-radius: 0;
+}
+
+/* ================================
+   GRILLE 3 COLONNES (petites cartes)
+   ================================ */
+.top-selling__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.top-selling__col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Petite carte produit */
+.mini-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  padding: 10px;
+  background: white;
+  transition: box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.mini-card:hover {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.mini-card__image {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  flex-shrink: 0;
+  background: #f9f9f9;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.mini-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.mini-card__category {
+  font-size: 10px;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 3px;
+}
+
+.mini-card__name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1a1a2e;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mini-card__prices {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mini-card__price {
+  font-size: 14px;
+  font-weight: 800;
+  color: #e53935;
+}
+
+.mini-card__price--old {
+  font-size: 11px;
+  color: #bbb;
+  text-decoration: line-through;
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+@media (max-width: 768px) {
+  .top-selling__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .top-selling__tabs [role="tablist"] {
+    flex-wrap: wrap;
+    height: auto;
+    gap: 4px;
+  }
+
+  .top-selling__grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .top-selling__col {
+    gap: 8px;
+  }
+}

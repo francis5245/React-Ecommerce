@@ -1,0 +1,149 @@
+/* ================================
+   NEWSLETTER
+   ================================ */
+.newsletter {
+  padding: 60px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Enveloppe décorative en arrière-plan */
+.newsletter::before {
+  content: "✉";
+  position: absolute;
+  font-size: 280px;
+  color: #f0f0f0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  line-height: 1;
+}
+
+.newsletter__content {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.newsletter__title {
+  font-size: 26px;
+  font-weight: 400;
+  color: #1a1a2e;
+  margin-bottom: 24px;
+}
+
+.newsletter__title strong {
+  font-weight: 900;
+}
+
+/* Formulaire */
+.newsletter__form {
+  display: flex;
+  gap: 0;
+  border-radius: 30px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  background: white;
+  margin-bottom: 28px;
+}
+
+.newsletter__input {
+  flex: 1;
+  height: 50px;
+  border: none;
+  padding: 0 20px;
+  font-size: 14px;
+  outline: none;
+  color: #333;
+  background: transparent;
+}
+
+.newsletter__input::placeholder {
+  color: #bbb;
+}
+
+.newsletter__btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 28px;
+  height: 50px;
+  background: #e53935;
+  color: white;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 0 30px 30px 0;
+  white-space: nowrap;
+}
+
+.newsletter__btn:hover {
+  background: #c62828;
+}
+
+/* Réseaux sociaux */
+.newsletter__socials {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.newsletter__social {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  text-decoration: none;
+  font-size: 16px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.newsletter__social:hover {
+  border-color: #e53935;
+  color: #e53935;
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+@media (max-width: 768px) {
+  .newsletter {
+    padding: 40px 20px;
+  }
+
+  .newsletter__title {
+    font-size: 20px;
+  }
+
+  .newsletter__form {
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: visible;
+    border: none;
+    gap: 10px;
+    background: transparent;
+  }
+
+  .newsletter__input {
+    border: 1px solid #e0e0e0;
+    border-radius: 30px;
+    background: white;
+    height: 46px;
+  }
+
+  .newsletter__btn {
+    border-radius: 30px;
+    height: 46px;
+    justify-content: center;
+  }
+}
