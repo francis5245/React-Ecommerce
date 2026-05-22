@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom"
 import Navbar from "@/components/Navbar/Navbar"
+import Footer from "@/components/Footer/Footer"
 
 export default function MainLayout() {
   return (
@@ -19,10 +20,7 @@ export default function MainLayout() {
                         si on est sur / et sur /card si on est sur /card */}
       </main>
 
-      {/* Footer simple — à enrichir plus tard */}
-      <footer className="border-t py-6 text-center text-sm text-muted-foreground">
-        © 2025 MonShop — Tous droits réservés
-      </footer>
+       <Footer />
 
     </div>
   )
