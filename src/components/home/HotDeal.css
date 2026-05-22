@@ -1,0 +1,148 @@
+/* ================================
+   HOT DEAL
+   ================================ */
+.hotdeal {
+  background: #f0f2f5;
+  padding: 60px 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hotdeal__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+/* Images produits sur les côtés */
+.hotdeal__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hotdeal__image img {
+  max-height: 280px;
+  width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.15));
+}
+
+.hotdeal__image--right {
+  justify-content: flex-start;
+}
+
+/* Contenu central */
+.hotdeal__content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Countdown */
+.hotdeal__countdown {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.hotdeal__unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.hotdeal__number {
+  background: #e53935;
+  color: white;
+  font-size: 28px;
+  font-weight: 900;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.hotdeal__label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Texte */
+.hotdeal__title {
+  font-size: 28px;
+  font-weight: 900;
+  color: #1a1a2e;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+.hotdeal__subtitle {
+  font-size: 13px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Bouton */
+.hotdeal__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e53935;
+  color: white;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 12px 32px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.hotdeal__btn:hover {
+  background: #c62828;
+  transform: translateY(-2px);
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+@media (max-width: 768px) {
+  .hotdeal {
+    padding: 40px 20px;
+  }
+
+  .hotdeal__container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hotdeal__image {
+    display: none;
+  }
+
+  .hotdeal__number {
+    width: 56px;
+    height: 56px;
+    font-size: 22px;
+  }
+
+  .hotdeal__title {
+    font-size: 22px;
+  }
+}
