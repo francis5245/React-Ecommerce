@@ -92,17 +92,24 @@ export default function Footer() {
       </div>
 
       {/* Barre du bas */}
-      <div className="footer__legal">
-        <div className="footer__copyright">
-          {/* {["VISA", "MC", "PAYPAL", "AMEX"].map((p) => (
-            <span key={p} className="footer__payment-badge">{p}</span>
-          ))} */}
-           {new Date().getFullYear()} &copy; SOHPP. Tous droits réservés.
-           <span className="footer__design">Design by 
-            <a href="mailto:francissagbo1@gmail.com" className="footer__design-link">
-              Francis SAGBO</a> </span>
-        </div>
-      </div>
+    
+<div className="footer__bottom">
+  <div className="footer__payments">
+    {["VISA", "MC", "PAYPAL", "AMEX"].map((p) => (
+      <span key={p} className="footer__payment-badge">{p}</span>
+    ))}
+  </div>
+  <div className="footer__legal">
+    <div className="footer__copyright">
+      &copy; {new Date().getFullYear()} SHOOP. Tous droits réservés.
+      <span className="footer__design"> Design by{" "}
+        <a href="mailto:francissagbo1@gmail.com" className="footer__design-link">
+          Francis SAGBO
+        </a>
+      </span>
+    </div>
+  </div>
+</div>
         
     </footer>
   )

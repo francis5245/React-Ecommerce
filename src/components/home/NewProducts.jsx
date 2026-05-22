@@ -1,5 +1,6 @@
 import { Heart, ArrowLeftRight, Eye, Star } from "lucide-react"
 import { useEffect, useState } from "react"
+import { useCart } from "@/context/CartContext"
 import {
   Carousel,
   CarouselContent,
@@ -61,8 +62,15 @@ function Stars({ count }) {
 
 // Composant carte produit
 function ProductCard({ product }) {
+  const { addToCart } = useCart()
+  const [hovered, setHovered] = useState(false)
+
   return (
-    <div className="product-card">
+    <div
+      className="product-card"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <div className="product-card__image-wrap">
         <img src={product.image} alt={product.name} />
         {product.badge === "new" && (
@@ -91,6 +99,20 @@ function ProductCard({ product }) {
             <Eye className="h-4 w-4" />
           </button>
         </div>
+
+        {/* Bouton visible uniquement au survol */}
+        <button
+          onClick={() => addToCart(product)}
+          className="product-card__add-btn"
+          style={{
+            opacity: hovered ? 1 : 0,
+            transform: hovered ? "translateY(0)" : "translateY(6px)",
+            pointerEvents: hovered ? "auto" : "none",
+          }}
+        >
+          Add to Cart
+        </button>
+
       </div>
     </div>
   )
