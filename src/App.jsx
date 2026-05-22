@@ -1,4 +1,3 @@
-// src/App.jsx
 import { RouterProvider } from "react-router-dom";
 import { CartProvider } from "@/context/CartContext";
 import { router } from "@/routes/routes";
