@@ -5,8 +5,12 @@ import Home from "@/pages/Home";
 import Promotions from "@/pages/Promotion";
 import ErrorPage from "@/pages/ErrorPage";
 import Panier from "@/pages/Panier";
+import Produit from "@/pages/Produit";
+import Wishlist from "@/pages/Wishlist";
+import Recherche from "@/pages/Recherche";
+import Categorie from "@/pages/Categorie";
+import Checkout from "@/pages/Checkout";
 
-// On garde ton tableau d'objets bien propre
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -18,7 +22,11 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       { path: "panier",    element: <Panier /> },
-
+      { path: "produit/:id", element: <Produit /> },
+      { path: "wishlist", element: <Wishlist /> },
+      { path: "recherche", element: <Recherche /> },
+      { path: "categorie/:slug", element: <Categorie /> },
+      { path: "checkout", element: <Checkout /> },
       {
         path: "promotions",
         element: <Promotions />,

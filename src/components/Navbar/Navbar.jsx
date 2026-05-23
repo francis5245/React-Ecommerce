@@ -11,11 +11,24 @@ import DesktopNav from "./desktop-nav";
 import MobileNav from "./mobile-nav";
 import CartButton from "./cart-button";
 import "./Navbar.css";
+import { useWishlist } from "@/context/WishlistContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
   const { cartCount } = useCart();
+  const { wishlistCount } = useWishlist();
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (search.trim()) {
+      navigate(`/recherche?q=${encodeURIComponent(search.trim())}`);
+      setSearch("");
+    }
+  };
+
   return (
     <header className="navbar-wrapper">
       {/* COUCHE 1 — barre du haut */}
@@ -40,9 +53,10 @@ export default function Navbar() {
             SHOOP<span>.</span>
           </a>
 
-          <div className="navbar-search">
+          {/* Barre de recherche desktop */}
+          <form className="navbar-search" onSubmit={handleSearch}>
             <select className="navbar-search__select">
-              <option>Toutes les catégories</option>
+              <option>All Categories</option>
               <option>Mode</option>
               <option>Électronique</option>
               <option>Maison</option>
@@ -50,21 +64,28 @@ export default function Navbar() {
             </select>
             <input
               type="text"
-              placeholder="Rechercher..."
+              placeholder="Search here..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="navbar-search__input"
             />
-            <button className="navbar-search__btn">
+            <button type="submit" className="navbar-search__btn">
               <Search className="h-4 w-4" />
               Search
             </button>
-          </div>
+          </form>
 
           <div className="navbar-actions">
             <a href="/wishlist" className="navbar-actions__item">
-              <Heart className="h-5 w-5" />
-              <span>Favoris</span>
+              <div className="relative">
+                <Heart className="h-5 w-5" />
+                {wishlistCount > 0 && (
+                  <span className="navbar-actions__badge">
+                    {wishlistCount > 9 ? "9+" : wishlistCount}
+                  </span>
+                )}
+              </div>
+              <span>Vos Favoris</span>
             </a>
             <CartButton />
           </div>
@@ -80,10 +101,15 @@ export default function Navbar() {
           </a>
 
           {/* Recherche mobile */}
-          <div className="navbar-search-mobile">
-            <input type="text" placeholder="Search here..." />
-            <button>Search</button>
-          </div>
+          <form className="navbar-search-mobile" onSubmit={handleSearch}>
+            <input
+              type="text"
+              placeholder="Search here..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <button type="submit">Search</button>
+          </form>
 
           {/* Desktop : liens de navigation */}
           <div className="navbar-bottom__desktop">
@@ -93,8 +119,15 @@ export default function Navbar() {
           {/* Mobile : wishlist + panier + menu */}
           <div className="navbar-bottom__mobile">
             <a href="/wishlist" className="navbar-mobile__item">
-              <Heart className="h-5 w-5" />
-              <span>Favoris</span>
+              <div className="relative">
+                <Heart className="h-5 w-5" />
+                {wishlistCount > 0 && (
+                  <span className="navbar-mobile__badge">
+                    {wishlistCount > 9 ? "9+" : wishlistCount}
+                  </span>
+                )}
+              </div>
+              <span>Wishlist</span>
             </a>
             <a href="/panier" className="navbar-mobile__item">
               <div className="relative">
