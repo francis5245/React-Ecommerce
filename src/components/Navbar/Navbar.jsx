@@ -1,23 +1,23 @@
-import { useState } from "react"
-import { Menu, ShoppingBag, ShoppingCart, Heart, Search } from "lucide-react"
+import { useState } from "react";
+import { useCart } from "@/context/CartContext";
+import { Menu, ShoppingBag, ShoppingCart, Heart, Search } from "lucide-react";
 import {
   Sheet,
   SheetContent,
   SheetTitle,
-  SheetTrigger
-} from "@/components/ui/sheet"
-import DesktopNav from "./desktop-nav"
-import MobileNav from "./mobile-nav"
-import CartButton from "./cart-button"
-import "./Navbar.css"
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import DesktopNav from "./desktop-nav";
+import MobileNav from "./mobile-nav";
+import CartButton from "./cart-button";
+import "./Navbar.css";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [search, setSearch] = useState("")
-
+  const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const { cartCount } = useCart();
   return (
     <header className="navbar-wrapper">
-
       {/* COUCHE 1 — barre du haut */}
       <div className="navbar-top">
         <div className="navbar-container">
@@ -74,7 +74,6 @@ export default function Navbar() {
       {/* COUCHE 3 — desktop nav + mobile complet */}
       <div className="navbar-bottom">
         <div className="navbar-container">
-
           {/* Logo — visible uniquement sur mobile */}
           <a href="/" className="navbar-logo">
             SHOOP<span>.</span>
@@ -95,11 +94,18 @@ export default function Navbar() {
           <div className="navbar-bottom__mobile">
             <a href="/wishlist" className="navbar-mobile__item">
               <Heart className="h-5 w-5" />
-              <span>Wishlist</span>
+              <span>Favoris</span>
             </a>
             <a href="/panier" className="navbar-mobile__item">
-              <ShoppingCart className="h-5 w-5" />
-              <span>Your Cart</span>
+              <div className="relative">
+                <ShoppingCart className="h-5 w-5" />
+                {cartCount > 0 && (
+                  <span className="navbar-mobile__badge">
+                    {cartCount > 9 ? "9+" : cartCount}
+                  </span>
+                )}
+              </div>
+              <span>Panier</span>
             </a>
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
@@ -114,10 +120,8 @@ export default function Navbar() {
               </SheetContent>
             </Sheet>
           </div>
-
         </div>
       </div>
-
     </header>
-  )
+  );
 }
