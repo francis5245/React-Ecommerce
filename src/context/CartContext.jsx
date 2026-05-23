@@ -1,10 +1,9 @@
 import { createContext, useContext, useState, useEffect } from "react"
+import { toast } from "sonner"
 
 export const CartContext = createContext()
 
 export function CartProvider({ children }) {
-
-  // Initialise le cart depuis localStorage si disponible
   const [cart, setCart] = useState(() => {
     try {
       const saved = localStorage.getItem("shoop-cart")
@@ -14,7 +13,6 @@ export function CartProvider({ children }) {
     }
   })
 
-  // Sauvegarde dans localStorage à chaque changement du cart
   useEffect(() => {
     localStorage.setItem("shoop-cart", JSON.stringify(cart))
   }, [cart])
@@ -23,12 +21,18 @@ export function CartProvider({ children }) {
     setCart((prev) => {
       const exists = prev.find((item) => item.id === product.id)
       if (exists) {
+        toast.success(`Quantité mise à jour !`, {
+          description: product.name,
+        })
         return prev.map((item) =>
           item.id === product.id
             ? { ...item, qty: item.qty + 1 }
             : item
         )
       }
+      toast.success(`Ajouté au panier !`, {
+        description: product.name,
+      })
       return [...prev, { ...product, qty: 1 }]
     })
   }
@@ -53,11 +57,13 @@ export function CartProvider({ children }) {
 
   const removeFromCart = (id) => {
     setCart((prev) => prev.filter((item) => item.id !== id))
+    toast.error("Produit retiré du panier")
   }
 
   const clearCart = () => {
     setCart([])
     localStorage.removeItem("shoop-cart")
+    toast.error("Panier vidé")
   }
 
   const cartCount = cart.reduce((total, item) => total + item.qty, 0)

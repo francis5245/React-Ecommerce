@@ -1,11 +1,14 @@
-import { RouterProvider } from "react-router-dom";
-import { CartProvider } from "@/context/CartContext";
-import { router } from "@/routes/routes";
+import { RouterProvider } from "react-router-dom"
+import { CartProvider } from "@/context/CartContext"
+import { WishlistProvider } from "@/context/WishlistContext"
+import { router } from "@/routes/routes"
 
 export default function App() {
   return (
     <CartProvider>
-      <RouterProvider router={router} />
+      <WishlistProvider>
+        <RouterProvider router={router} />
+      </WishlistProvider>
     </CartProvider>
-  );
+  )
 }

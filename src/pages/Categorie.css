@@ -1,0 +1,181 @@
+/* ================================
+   PAGE CATÉGORIE
+   ================================ */
+.categorie {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Fil d'Ariane */
+.categorie__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #aaa;
+  margin-bottom: 32px;
+}
+
+.categorie__breadcrumb a {
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.categorie__breadcrumb a:hover {
+  color: #e53935;
+}
+
+.categorie__breadcrumb span {
+  color: #1a1a2e;
+  font-weight: 600;
+}
+
+/* En-tête */
+.categorie__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #f0f0f0;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.categorie__title {
+  font-size: 22px;
+  font-weight: 900;
+  color: #1a1a2e;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.categorie__meta {
+  font-size: 13px;
+  color: #aaa;
+}
+
+/* Filtres */
+.categorie__filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.categorie__filter-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.categorie__filter-btn {
+  padding: 6px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  background: white;
+  font-size: 12px;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.categorie__filter-btn:hover {
+  border-color: #e53935;
+  color: #e53935;
+}
+
+.categorie__filter-btn.active {
+  background: #e53935;
+  border-color: #e53935;
+  color: white;
+}
+
+/* Tri */
+.categorie__sort {
+  margin-left: auto;
+  padding: 6px 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #666;
+  cursor: pointer;
+  outline: none;
+  background: white;
+}
+
+/* Grille produits */
+.categorie__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Vide */
+.categorie__empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #aaa;
+}
+
+.categorie__empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.categorie__empty-text {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+.categorie__empty-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e53935;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+
+.categorie__empty-btn:hover {
+  background: #c62828;
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+@media (max-width: 1024px) {
+  .categorie__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .categorie__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .categorie__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .categorie__sort {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .categorie__grid {
+    grid-template-columns: 1fr;
+  }
+}
