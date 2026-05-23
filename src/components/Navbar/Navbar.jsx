@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/sheet"
 import DesktopNav from "./desktop-nav"
 import MobileNav from "./mobile-nav"
+import CartButton from "./cart-button"
 import "./Navbar.css"
 
 export default function Navbar() {
@@ -65,10 +66,7 @@ export default function Navbar() {
               <Heart className="h-5 w-5" />
               <span>Your Wishlist</span>
             </a>
-            <a href="/panier" className="navbar-actions__item">
-              <ShoppingCart className="h-5 w-5" />
-              <span>Your Cart</span>
-            </a>
+            <CartButton />
           </div>
         </div>
       </div>

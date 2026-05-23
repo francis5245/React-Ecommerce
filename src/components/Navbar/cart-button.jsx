@@ -1,12 +1,10 @@
 import { ShoppingCart } from "lucide-react"
-import { useContext } from "react"
 import { Link } from "react-router-dom"
-
 import { Button } from "@/components/ui/button"
-import { CartContext } from "@/context/CartContext"
+import { useCart } from "@/context/CartContext"
 
 export default function CartButton() {
-  const { cartCount } = useContext(CartContext)
+  const { cartCount } = useCart()
 
   return (
     <Button variant="ghost" size="icon" asChild>
