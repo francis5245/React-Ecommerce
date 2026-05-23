@@ -22,13 +22,13 @@ export default function Navbar() {
       <div className="navbar-top">
         <div className="navbar-container">
           <div className="navbar-top__left">
-            <span>+221 00 00 00 00</span>
-            <span>email@email.com</span>
-            <span>17 Rue Somewhere</span>
+            <span>+229 0152454205</span>
+            <span>francissagbo@gmail.com</span>
+            <span>Cotonou, Bénin</span>
           </div>
           <div className="navbar-top__right">
-            <span>USD</span>
-            <a href="/compte">My Account</a>
+            <span>CFA</span>
+            <a href="/compte">Mon Compte</a>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@ export default function Navbar() {
 
           <div className="navbar-search">
             <select className="navbar-search__select">
-              <option>All Categories</option>
+              <option>Toutes les catégories</option>
               <option>Mode</option>
               <option>Électronique</option>
               <option>Maison</option>
@@ -50,7 +50,7 @@ export default function Navbar() {
             </select>
             <input
               type="text"
-              placeholder="Search here..."
+              placeholder="Rechercher..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="navbar-search__input"
@@ -64,7 +64,7 @@ export default function Navbar() {
           <div className="navbar-actions">
             <a href="/wishlist" className="navbar-actions__item">
               <Heart className="h-5 w-5" />
-              <span>Your Wishlist</span>
+              <span>Favoris</span>
             </a>
             <CartButton />
           </div>

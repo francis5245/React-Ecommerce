@@ -115,7 +115,7 @@ export default function Panier() {
             <div className="panier__summary-row">
               <span>Livraison</span>
               <span>
-                {shipping === 0 ? "Gratuit 🎉" : `$${shipping}.00`}
+                {shipping === 0 ? "Gratuit" : `$${shipping}.00`}
               </span>
             </div>
 

@@ -1,12 +1,24 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useState, useEffect } from "react"
 
 export const CartContext = createContext()
+
 export function CartProvider({ children }) {
 
-  // cart = tableau de produits : [{ id, name, price, image, category, qty }, ...]
-  const [cart, setCart] = useState([])
+  // Initialise le cart depuis localStorage si disponible
+  const [cart, setCart] = useState(() => {
+    try {
+      const saved = localStorage.getItem("shoop-cart")
+      return saved ? JSON.parse(saved) : []
+    } catch {
+      return []
+    }
+  })
 
-  // Ajouter un produit — si déjà dans le panier, augmente la quantité
+  // Sauvegarde dans localStorage à chaque changement du cart
+  useEffect(() => {
+    localStorage.setItem("shoop-cart", JSON.stringify(cart))
+  }, [cart])
+
   const addToCart = (product) => {
     setCart((prev) => {
       const exists = prev.find((item) => item.id === product.id)
@@ -21,7 +33,6 @@ export function CartProvider({ children }) {
     })
   }
 
-  // Augmenter la quantité d'un produit
   const increaseQty = (id) => {
     setCart((prev) =>
       prev.map((item) =>
@@ -30,7 +41,6 @@ export function CartProvider({ children }) {
     )
   }
 
-  // Diminuer la quantité — supprime si qty = 1
   const decreaseQty = (id) => {
     setCart((prev) =>
       prev
@@ -41,18 +51,16 @@ export function CartProvider({ children }) {
     )
   }
 
-  // Supprimer un produit complètement
   const removeFromCart = (id) => {
     setCart((prev) => prev.filter((item) => item.id !== id))
   }
 
-  // Vider tout le panier
-  const clearCart = () => setCart([])
+  const clearCart = () => {
+    setCart([])
+    localStorage.removeItem("shoop-cart")
+  }
 
-  // Nombre total d'articles — utilisé par cart-button.jsx
   const cartCount = cart.reduce((total, item) => total + item.qty, 0)
-
-  // Sous-total
   const subtotal = cart.reduce((total, item) => total + item.price * item.qty, 0)
 
   return (

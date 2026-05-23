@@ -161,11 +161,11 @@
   gap: 28px;
   flex-shrink: 0;
 }
-
 .navbar-actions__item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 4px;
   color: white;
   text-decoration: none;
@@ -173,11 +173,37 @@
   transition: color 0.2s;
   position: relative;
 }
-
-.navbar-actions__item:hover {
-  color: var(--brand);
+.navbar-actions .navbar-actions__item,
+.navbar-actions a,
+.navbar-actions button,
+.navbar-actions svg {
+  color: white !important;
 }
 
+.navbar-actions button:hover svg,
+.navbar-actions a:hover svg {
+  color: var(--brand) !important;
+}
+.navbar-cart-btn {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  height: auto !important;
+  width: auto !important;
+  color: white !important;
+  font-size: 11px;
+}
+
+.navbar-cart-btn:hover {
+  background: rgba(255,255,255,0.15) !important;
+  color: var(--brand) !important;
+}
+
+.navbar-cart-btn svg {
+  color: white !important;
+}
 /* Badge sur les icônes */
 .navbar-actions__badge {
   position: absolute;
