@@ -10,6 +10,9 @@ import Wishlist from "@/pages/Wishlist";
 import Recherche from "@/pages/Recherche";
 import Categorie from "@/pages/Categorie";
 import Checkout from "@/pages/Checkout";
+import Compte from "@/pages/Compte";
+import Login from "@/pages/Login";
+import Register from "@/pages/Register";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +30,9 @@ export const router = createBrowserRouter([
       { path: "recherche", element: <Recherche /> },
       { path: "categorie/:slug", element: <Categorie /> },
       { path: "checkout", element: <Checkout /> },
+      { path: "compte", element: <Compte /> },
+      { path: "login",    element: <Login /> },
+      { path: "register", element: <Register /> },
       {
         path: "promotions",
         element: <Promotions />,
