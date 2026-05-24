@@ -1,43 +1,41 @@
-import { MapPin, Phone, Mail } from "lucide-react"
-import "./Footer.css"
+import { MapPin, Phone, Mail } from "lucide-react";
+import "./Footer.css";
 
 const CATEGORIES = [
-  { label: "Hot Deals",   href: "/promotions" },
-  { label: "Laptops",     href: "/categorie/laptops" },
+  { label: "Hot Deals", href: "/promotions" },
+  { label: "Laptops", href: "/categorie/laptops" },
   { label: "Smartphones", href: "/categorie/smartphones" },
-  { label: "Cameras",     href: "/categorie/cameras" },
+  { label: "Cameras", href: "/categorie/cameras" },
   { label: "Accessories", href: "/categorie/accessories" },
-]
+];
 
 const INFORMATION = [
-  { label: "About Us",         href: "/about" },
-  { label: "Contact Us",       href: "/contact" },
-  { label: "Privacy Policy",   href: "/privacy" },
+  { label: "About Us", href: "/about" },
+  { label: "Contact Us", href: "/contact" },
+  { label: "Privacy Policy", href: "/privacy" },
   { label: "Orders & Returns", href: "/orders" },
   { label: "Terms & Conditions", href: "/terms" },
-]
+];
 
 const SERVICE = [
-  { label: "My Account",    href: "/compte" },
-  { label: "View Cart",     href: "/panier" },
-  { label: "Wishlist",      href: "/wishlist" },
+  { label: "My Account", href: "/compte" },
+  { label: "View Cart", href: "/panier" },
+  { label: "Wishlist", href: "/wishlist" },
   { label: "Track My Order", href: "/track" },
-  { label: "Help",          href: "/help" },
-]
+  { label: "Help", href: "/help" },
+];
 
 export default function Footer() {
   return (
     <footer className="footer">
-
       {/* Section principale */}
       <div className="footer__main">
-
         {/* Colonne 1 — About */}
         <div>
           <h3 className="footer__col-title">About Us</h3>
           <p className="footer__about-text">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut.
           </p>
           <div className="footer__contact-item">
             <MapPin />
@@ -88,29 +86,34 @@ export default function Footer() {
             ))}
           </ul>
         </div>
-
       </div>
 
       {/* Barre du bas */}
-    
-<div className="footer__bottom">
-  <div className="footer__payments">
-    {["VISA", "MC", "PAYPAL", "AMEX"].map((p) => (
-      <span key={p} className="footer__payment-badge">{p}</span>
-    ))}
-  </div>
-  <div className="footer__legal">
-    <div className="footer__copyright">
-      &copy; {new Date().getFullYear()} SHOOP. Tous droits réservés.
-      <span className="footer__design"> Design by{" "}
-        <a href="mailto:francissagbo1@gmail.com" className="footer__design-link">
-          Francis SAGBO
-        </a>
-      </span>
-    </div>
-  </div>
-</div>
-        
+
+      <div className="footer__bottom">
+        <div className="footer__payments">
+          {["VISA", "MC", "PAYPAL", "AMEX"].map((p) => (
+            <span key={p} className="footer__payment-badge">
+              {p}
+            </span>
+          ))}
+        </div>
+        <div className="footer__legal">
+          <div className="footer__copyright">
+            &copy; {new Date().getFullYear()} SHOOP. Tous droits réservés.
+            <span className="footer__design">
+              {" "}
+              Design by{" "}
+              <a
+                href="mailto:francissagbo1@gmail.com"
+                className="footer__design-link"
+              >
+                Francis SAGBO
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
     </footer>
-  )
+  );
 }
