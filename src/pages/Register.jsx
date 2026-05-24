@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { Mail, Lock, Eye, EyeOff, ShoppingBag, Package, Tag, Truck } from "lucide-react"
+import { Mail, Lock, Eye, EyeOff, User, Phone } from "lucide-react"
 import { toast } from "sonner"
 import "./Login.css"
 
@@ -26,11 +26,15 @@ function GithubIcon() {
   )
 }
 
-export default function Login() {
+export default function Register() {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [form, setForm] = useState({ email: "", password: "", remember: false })
+  const [form, setForm] = useState({
+    prenom: "", nom: "", email: "",
+    telephone: "", password: "", confirm: "", cgu: false,
+  })
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
@@ -38,21 +42,32 @@ export default function Login() {
   }
 
   const handleSubmit = () => {
-    if (!form.email || !form.password) {
-      toast.error("Veuillez remplir tous les champs")
+    if (!form.prenom || !form.nom || !form.email || !form.password || !form.confirm) {
+      toast.error("Veuillez remplir tous les champs obligatoires")
+      return
+    }
+    if (form.password !== form.confirm) {
+      toast.error("Les mots de passe ne correspondent pas")
+      return
+    }
+    if (form.password.length < 6) {
+      toast.error("Le mot de passe doit contenir au moins 6 caractères")
+      return
+    }
+    if (!form.cgu) {
+      toast.error("Veuillez accepter les conditions d'utilisation")
       return
     }
     setLoading(true)
-    // Simule un appel API
     setTimeout(() => {
       setLoading(false)
-      toast.success("Connexion réussie !")
+      toast.success("Compte créé avec succès !")
       navigate("/compte")
     }, 1500)
   }
 
   const handleSocial = (provider) => {
-    toast.info(`Connexion avec ${provider} — disponible avec le backend`)
+    toast.info(`Inscription avec ${provider} — disponible avec le backend`)
   }
 
   return (
@@ -64,27 +79,28 @@ export default function Login() {
           SHOOP<span>.</span>
         </a>
         <p className="auth__tagline">
-          Votre destination shopping en ligne, simple et rapide.
+          Rejoignez des milliers de clients satisfaits et profitez de nos offres exclusives.
         </p>
 
-        <div className="auth__features">
+        {/* Stats */}
+        <div className="auth__features" style={{ marginTop: 48 }}>
           <div className="auth__feature">
-            <div className="auth__feature-icon">
-              <Package className="h-4 w-4" />
+            <div className="auth__feature-icon" style={{ fontSize: 16, fontWeight: 800, width: 32, height: 32 }}>
+              🛍️
             </div>
-            Suivi de commandes en temps réel
+            +10 000 produits disponibles
           </div>
           <div className="auth__feature">
-            <div className="auth__feature-icon">
-              <Tag className="h-4 w-4" />
+            <div className="auth__feature-icon" style={{ fontSize: 16, fontWeight: 800, width: 32, height: 32 }}>
+              ⭐
             </div>
-            Offres et promotions exclusives
+            4.8/5 — Note moyenne clients
           </div>
           <div className="auth__feature">
-            <div className="auth__feature-icon">
-              <Truck className="h-4 w-4" />
+            <div className="auth__feature-icon" style={{ fontSize: 16, fontWeight: 800, width: 32, height: 32 }}>
+              🔒
             </div>
-            Livraison gratuite dès 500$
+            Paiement 100% sécurisé
           </div>
         </div>
       </div>
@@ -93,10 +109,10 @@ export default function Login() {
       <div className="auth__right">
         <div className="auth__form-wrap">
 
-          <h1 className="auth__form-title">Connexion</h1>
+          <h1 className="auth__form-title">Créer un compte</h1>
           <p className="auth__form-subtitle">
-            Pas encore de compte ?{" "}
-            <Link to="/register">Créer un compte</Link>
+            Déjà inscrit ?{" "}
+            <Link to="/login">Se connecter</Link>
           </p>
 
           {/* Boutons sociaux */}
@@ -119,12 +135,42 @@ export default function Login() {
 
           {/* Séparateur */}
           <div className="auth__divider">
-            <span>ou continuer avec email</span>
+            <span>ou s'inscrire avec email</span>
+          </div>
+
+          {/* Prénom + Nom */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+            <div className="auth__field">
+              <label className="auth__label">Prénom *</label>
+              <div className="auth__input-wrap">
+                <User className="auth__input-icon h-4 w-4" />
+                <input
+                  name="prenom"
+                  value={form.prenom}
+                  onChange={handleChange}
+                  placeholder="Jean"
+                  className="auth__input"
+                />
+              </div>
+            </div>
+            <div className="auth__field">
+              <label className="auth__label">Nom *</label>
+              <div className="auth__input-wrap">
+                <User className="auth__input-icon h-4 w-4" />
+                <input
+                  name="nom"
+                  value={form.nom}
+                  onChange={handleChange}
+                  placeholder="Dupont"
+                  className="auth__input"
+                />
+              </div>
+            </div>
           </div>
 
           {/* Email */}
           <div className="auth__field">
-            <label className="auth__label">Email</label>
+            <label className="auth__label">Email *</label>
             <div className="auth__input-wrap">
               <Mail className="auth__input-icon h-4 w-4" />
               <input
@@ -138,9 +184,24 @@ export default function Login() {
             </div>
           </div>
 
+          {/* Téléphone */}
+          <div className="auth__field">
+            <label className="auth__label">Téléphone</label>
+            <div className="auth__input-wrap">
+              <Phone className="auth__input-icon h-4 w-4" />
+              <input
+                name="telephone"
+                value={form.telephone}
+                onChange={handleChange}
+                placeholder="+229 00 00 00 00"
+                className="auth__input"
+              />
+            </div>
+          </div>
+
           {/* Mot de passe */}
           <div className="auth__field">
-            <label className="auth__label">Mot de passe</label>
+            <label className="auth__label">Mot de passe *</label>
             <div className="auth__input-wrap">
               <Lock className="auth__input-icon h-4 w-4" />
               <input
@@ -148,7 +209,7 @@ export default function Login() {
                 type={showPassword ? "text" : "password"}
                 value={form.password}
                 onChange={handleChange}
-                placeholder="••••••••"
+                placeholder="Min. 6 caractères"
                 className="auth__input"
               />
               <button
@@ -164,18 +225,53 @@ export default function Login() {
             </div>
           </div>
 
-          {/* Options */}
-          <div className="auth__options">
-            <label className="auth__remember">
+          {/* Confirmer mot de passe */}
+          <div className="auth__field">
+            <label className="auth__label">Confirmer le mot de passe *</label>
+            <div className="auth__input-wrap">
+              <Lock className="auth__input-icon h-4 w-4" />
+              <input
+                name="confirm"
+                type={showConfirm ? "text" : "password"}
+                value={form.confirm}
+                onChange={handleChange}
+                placeholder="••••••••"
+                className="auth__input"
+              />
+              <button
+                className="auth__input-toggle"
+                onClick={() => setShowConfirm(!showConfirm)}
+                type="button"
+              >
+                {showConfirm
+                  ? <EyeOff className="h-4 w-4" />
+                  : <Eye className="h-4 w-4" />
+                }
+              </button>
+            </div>
+          </div>
+
+          {/* CGU */}
+          <div style={{ marginBottom: 20 }}>
+            <label className="auth__remember" style={{ alignItems: "flex-start", gap: 8 }}>
               <input
                 type="checkbox"
-                name="remember"
-                checked={form.remember}
+                name="cgu"
+                checked={form.cgu}
                 onChange={handleChange}
+                style={{ marginTop: 2 }}
               />
-              Se souvenir de moi
+              <span style={{ fontSize: 13, color: "#555", lineHeight: 1.5 }}>
+                J'accepte les{" "}
+                <a href="/terms" style={{ color: "#e53935", textDecoration: "none" }}>
+                  Conditions d'utilisation
+                </a>
+                {" "}et la{" "}
+                <a href="/privacy" style={{ color: "#e53935", textDecoration: "none" }}>
+                  Politique de confidentialité
+                </a>
+              </span>
             </label>
-            <a href="#" className="auth__forgot">Mot de passe oublié ?</a>
           </div>
 
           {/* Submit */}
@@ -184,15 +280,8 @@ export default function Login() {
             onClick={handleSubmit}
             disabled={loading}
           >
-            {loading ? "Connexion en cours..." : "Se connecter"}
+            {loading ? "Création en cours..." : "Créer mon compte"}
           </button>
-
-          <p className="auth__cgu">
-            En vous connectant, vous acceptez nos{" "}
-            <a href="/terms">Conditions d'utilisation</a>{" "}
-            et notre{" "}
-            <a href="/privacy">Politique de confidentialité</a>.
-          </p>
 
         </div>
       </div>

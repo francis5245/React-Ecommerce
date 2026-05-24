@@ -2,7 +2,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "@/layouts/MainLayout"; 
 import Home from "@/pages/Home";
-import Promotions from "@/pages/Promotion";
+import Promotions from "@/pages/Promotions";
 import ErrorPage from "@/pages/ErrorPage";
 import Panier from "@/pages/Panier";
 import Produit from "@/pages/Produit";

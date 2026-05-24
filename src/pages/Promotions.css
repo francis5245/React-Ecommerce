@@ -1,0 +1,399 @@
+/* ================================
+   PAGE PROMOTIONS
+   ================================ */
+.promotions {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Hero banner promo */
+.promotions__hero {
+  background: #1a1a2e;
+  border-radius: 8px;
+  padding: 48px 40px;
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+}
+
+.promotions__hero::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(229,57,53,0.25) 0%, transparent 70%);
+  right: -100px;
+  top: -150px;
+}
+
+.promotions__hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.promotions__hero-badge {
+  display: inline-block;
+  background: #e53935;
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.promotions__hero-title {
+  font-size: 42px;
+  font-weight: 900;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.promotions__hero-title span {
+  color: #e53935;
+}
+
+.promotions__hero-subtitle {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 28px;
+}
+
+.promotions__hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e53935;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.promotions__hero-btn:hover {
+  background: #c62828;
+}
+
+.promotions__hero-numbers {
+  display: flex;
+  gap: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.promotions__hero-number {
+  text-align: center;
+}
+
+.promotions__hero-number strong {
+  display: block;
+  font-size: 36px;
+  font-weight: 900;
+  color: #e53935;
+  line-height: 1;
+}
+
+.promotions__hero-number span {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ================================
+   FILTRES
+   ================================ */
+.promotions__filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.promotions__filter-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.promotions__filter-btn {
+  padding: 7px 18px;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  background: white;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.promotions__filter-btn:hover {
+  border-color: #e53935;
+  color: #e53935;
+}
+
+.promotions__filter-btn.active {
+  background: #e53935;
+  border-color: #e53935;
+  color: white;
+}
+
+.promotions__sort {
+  margin-left: auto;
+  padding: 7px 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #666;
+  cursor: pointer;
+  outline: none;
+  background: white;
+}
+
+/* ================================
+   HEADER SECTION
+   ================================ */
+.promotions__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.promotions__title {
+  font-size: 22px;
+  font-weight: 900;
+  color: #1a1a2e;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.promotions__count {
+  font-size: 13px;
+  color: #aaa;
+}
+
+/* ================================
+   GRILLE PRODUITS
+   ================================ */
+.promotions__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Carte promo — étend product-card */
+.promo-card {
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: white;
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+
+.promo-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+  transform: translateY(-2px);
+}
+
+.promo-card__image-wrap {
+  position: relative;
+  background: #f9f9f9;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.promo-card__image-wrap img {
+  max-height: 170px;
+  width: 100%;
+  object-fit: contain;
+  transition: transform 0.3s;
+}
+
+.promo-card:hover .promo-card__image-wrap img {
+  transform: scale(1.05);
+}
+
+/* Badge réduction */
+.promo-card__discount {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #e53935;
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+/* Timer */
+.promo-card__timer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(26,26,46,0.85);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.promo-card__timer span {
+  color: #e53935;
+}
+
+/* Corps */
+.promo-card__body {
+  padding: 14px;
+  text-align: center;
+}
+
+.promo-card__category {
+  font-size: 11px;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.promo-card__name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a2e;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.promo-card__prices {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.promo-card__price {
+  font-size: 18px;
+  font-weight: 900;
+  color: #e53935;
+}
+
+.promo-card__price--old {
+  font-size: 13px;
+  color: #bbb;
+  text-decoration: line-through;
+}
+
+.promo-card__saving {
+  font-size: 11px;
+  color: #2e7d32;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.promo-card__add-btn {
+  width: 100%;
+  padding: 10px;
+  background: #1a1a2e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s, transform 0.2s;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+}
+
+.promo-card:hover .promo-card__add-btn {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.promo-card__add-btn:hover {
+  background: #e53935;
+}
+
+/* ================================
+   VIDE
+   ================================ */
+.promotions__empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #aaa;
+  grid-column: 1 / -1;
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+@media (max-width: 1024px) {
+  .promotions__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .promotions__hero {
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px 24px;
+  }
+
+  .promotions__hero-title {
+    font-size: 28px;
+  }
+
+  .promotions__hero-numbers {
+    gap: 20px;
+  }
+
+  .promotions__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .promotions__sort {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .promotions__grid {
+    grid-template-columns: 1fr;
+  }
+}
